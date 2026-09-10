@@ -22,6 +22,14 @@ const submitBtn = document.getElementById('submit-btn');
 const btnText = document.getElementById('btn-text');
 const toast = document.getElementById('toast');
 
+// Plausible receives event names only; never send names, email addresses, or message text.
+function trackEvent(name) {
+  if (typeof window.plausible === 'function') window.plausible(name);
+}
+
+document.querySelectorAll('[data-analytics-event]').forEach(link => {
+  link.addEventListener('click', () => trackEvent(link.dataset.analyticsEvent));
+});
 
 // ── AUTO YEAR LABEL ───────────────────────────────────────────────────────────
 // Batch started July 2024 (4-year B.Tech, 2024-2028)
@@ -211,6 +219,7 @@ if (contactForm) {
 
     try {
       await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm);
+      trackEvent('Contact form submission');
       showToast('success', '✓ Message sent! I\'ll get back to you soon.');
       contactForm.reset();
     } catch (err) {
