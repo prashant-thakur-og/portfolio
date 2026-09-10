@@ -1243,9 +1243,17 @@ input.error, textarea.error {
   text-decoration: underline; text-underline-offset: 3px;
   transition: color .2s;
 }
-.form-note a:hover { color: var(--accent); }
+  .form-note a:hover { color: var(--accent); }
+  .privacy-note {
+  flex-basis: 100%;
+  margin: 0;
+  color: rgba(244,242,236,.42);
+  font-size: .75rem;
+  line-height: 1.6;
+  max-width: 620px;
+  }
 
-/* Toast */
+  /* Toast */
 .toast {
   display: none;
   padding: 12px 18px;

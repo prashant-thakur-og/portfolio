@@ -10,6 +10,9 @@
 <meta property="og:description" content="Building LLMs, agentic pipelines, and cloud infra that stay up — not just coursework.">
 <meta property="og:type" content="website">
 
+<!-- Plausible Analytics: replace the domain with the verified site in Plausible. No personal data is sent. -->
+<script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script>
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -521,7 +524,8 @@
             <span id="btn-text">Send message</span>
             <svg id="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
           </button>
-          <p class="form-note">Or email directly: <a href="mailto:nikhilgumasta1@gmail.com">nikhilgumasta1@gmail.com</a></p>
+          <p class="form-note">Or email directly: <a href="mailto:nikhilgumasta1@gmail.com" data-analytics-event="email-click">nikhilgumasta1@gmail.com</a></p>
+  <p class="privacy-note">Anonymous visits are not named. Submitting this form voluntarily shares your name and email with Nikhil so he can reply.</p>
         </div>
       </form>
 
@@ -546,7 +550,7 @@
 
       <!-- Visitor counter -->
       <p class="visitor-line r" style="transition-delay:.24s" aria-live="polite">
-        You are the <strong id="view-count-contact">—</strong><span id="view-ordinal-contact"></span> visitor on this site.
+        <span>You are the <strong id="view-count-contact">—</strong><span id="view-ordinal-contact"></span> visitor on this site.</span> Anonymous visits stay anonymous; identified visitors choose to submit the contact form.
       </p>
     </div>
   </section>
