@@ -329,6 +329,7 @@ applyAcademicYear();
 
 // Kick off async widgets after first paint.
 renderContribGraph();
+bumpViews();
 // ── LEARNING CARD WORD REVEAL re-trigger on scroll ────────────────────────────
 // Words animate in on first visibility. Intersection observer re-arms after 8s.
 (function initLearnReveal() {
