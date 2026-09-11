@@ -417,14 +417,11 @@ async function bumpViews() {
 
   if (allowButton) allowButton.hidden = true;
   try {
-    const savedCount = Number(localStorage.getItem(VIEW_COUNT_KEY));
-    const alreadyCounted = localStorage.getItem(VIEW_COUNTED_KEY) === '1';
-    if (alreadyCounted && Number.isFinite(savedCount) && savedCount > 0) {
-      renderViewCount(savedCount);
-      return;
-    }
+  const savedCount = Number(localStorage.getItem(VIEW_COUNT_KEY));
+  const hasSavedCount = Number.isInteger(savedCount) && savedCount >= 0;
+  if (hasSavedCount) renderViewCount(savedCount);
 
-    const res = await fetch('/api/visitors', {
+  const res = await fetch('/api/visitors', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ visitorKey: getAnonymousViewerKey() })
@@ -439,12 +436,12 @@ async function bumpViews() {
     renderViewCount(n);
 
   } catch (err) {
-    localStorage.removeItem(VIEW_COUNTED_KEY);
-    console.warn('View counter unavailable:', err);
-    if (chip) chip.style.display = 'none';
-    const ctaLine = ctaCount?.closest('.visitor-line');
-    if (ctaLine) ctaLine.style.display = 'none';
+  console.warn('View counter unavailable:', err);
+  // Keep the last confirmed count instead of replacing it with zero offline.
+  if (chip) chip.style.display = '';
+  if (hasSavedCount) renderViewCount(savedCount);
   }
+
 }
 
 applyAcademicYear();
