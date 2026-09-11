@@ -1671,13 +1671,25 @@ footer span {
    RESPONSIVE — MOBILE
    ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 640px) {
+  .sw, footer { padding-left: 16px; padding-right: 16px; }
+  #site-header { padding: 8px; }
+  #nav { padding: 8px 10px; }
+  .hero-inner { padding: 104px 16px 56px; }
   .hero-layout { grid-template-columns: 1fr; gap: 26px; }
   .hero-content { grid-column: 1; grid-row: 2; }
   .avatar { grid-column: 1; grid-row: 1; justify-self: start; width: 112px; height: 112px; margin-top: 0; }
-  .hero-h1 { font-size: 2.8rem; }
+  .hero-kicker { font-size: .68rem; line-height: 1.5; }
+  .hero-h1 { font-size: clamp(2.45rem, 13vw, 3rem); overflow-wrap: anywhere; }
+  .hero-subtitle { font-size: .92rem; }
+  .hero-lead { font-size: .98rem; line-height: 1.6; }
   .hero-actions, .id-actions { flex-direction: column; }
   .hero-actions .btn, .id-actions .btn { width: 100%; }
-  .status-cards { grid-template-columns: 1fr; }
+  .status-cards { grid-template-columns: 1fr; width: 100%; }
+  .status-card { width: 100%; min-width: 0; white-space: normal; }
+  .views-card { align-items: flex-start; }
+  .views-card .visitor-allow { margin-left: auto; flex-shrink: 0; }
+  .status-copy { min-width: 0; }
+  .status-copy > span:last-child { overflow-wrap: anywhere; }
   .steps { grid-template-columns: 1fr; }
   .sec { padding: 80px 0; }
   .cta-h2 { font-size: 2.4rem; }
@@ -1730,13 +1742,7 @@ footer span {
   }
   .visitor-allow:hover { background: var(--accent); color: var(--bg); }
   .visitor-allow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .visitor-allow[hidden], .visitor-consent-note[hidden] { display: none; }
-  .visitor-consent-note {
-  flex-basis: 100%;
-  font-size: .68rem;
-  color: var(--muted);
-  line-height: 1.4;
-  }
+  .visitor-allow[hidden] { display: none; }
 
 /* --------------------------------------------------------------------------
    DEVICON TAG ICONS
