@@ -17,15 +17,12 @@
 <link rel="canonical" href="https://nikhilg.is-a.dev/">
 <link rel="icon" type="image/png" href="Nikk-removebg-preview.png">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-<!-- EmailJS -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<!-- Vercel Web Analytics (enable it in the Vercel project dashboard) -->
 <script defer src="/_vercel/insights/script.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -33,7 +30,6 @@
 </head>
 <body>
 
-<!-- Theme init script (prevents flash) — beige light-first -->
 <script>
 (function(){
   const saved = localStorage.getItem('nikk-theme-v2');
@@ -42,10 +38,8 @@
 })();
 </script>
 
-<!-- Skip to content -->
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Scroll progress bar -->
 <div id="prog" aria-hidden="true"></div>
 
 <!-- ════════════════════════════════ MOBILE MENU ═══════════════════════════════ -->
@@ -88,14 +82,12 @@
     <div class="n-right">
       <a href="mailto:nikhilgumasta1@gmail.com?subject=Internship%20—%20Nikk" class="btn btn-primary btn-sm">Hire me</a>
 
-      <!-- Theme toggle -->
       <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
       
 
-      <!-- Burger -->
       <button class="burger" id="bg" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mob">
         <span></span><span></span>
       </button>
@@ -108,13 +100,11 @@
 
   <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
   <section id="hero" class="sec hero-sec">
-    <!-- Ambient glow -->
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="bg-grid" aria-hidden="true"></div>
 
     <div class="sw hero-inner">
       <div class="hero-layout">
-        <!-- Profile photo; keep the initials as a graceful fallback. -->
         <div class="avatar r" style="transition-delay:.02s">
           <img src="Nikk-removebg-preview.png" alt="Nikhil Gumasta" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
           <span class="avatar-initials">NG</span>
@@ -131,7 +121,6 @@
             <span class="gradient-text">Nikhil Gumasta</span><span class="period">.</span>
           </h1>
 
-          <!-- Slot-machine role flip-->
           <p class="hero-subtitle r" style="transition-delay:.12s">
             <span class="role-flip-wrap" aria-live="polite">
               <span class="role-flip-track" id="role-track">
@@ -152,7 +141,6 @@
             <a href="Nikhil%20Resume.pdf" class="btn btn-outline" target="_blank" rel="noopener">Resume</a>
           </div>
 
-      <!-- Social links -->
           <div class="hero-socials r" style="transition-delay:.24s" role="list" aria-label="Social links">
         <a href="https://github.com/CyberAkhil" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub" title="GitHub" role="listitem">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
@@ -165,23 +153,19 @@
         </a>
           </div>
 
-      <!-- Status cards — animated -->
           <div class="status-cards r" style="transition-delay:.28s" aria-label="Current status">
 
-        <!-- 1. Award card — gold shimmer -->
         <div class="status-card card-award">
           <svg class="award-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
           <span class="status-copy"><span class="status-kicker">Achievement</span><span>Counterspell '24 Winner</span></span>
           <span class="card-shine" aria-hidden="true"></span>
         </div>
 
-        <!-- 2. Building card — live recording dot -->
         <div class="status-card card-building">
           <span class="rec-dot" aria-hidden="true"></span>
           <span class="status-copy"><span class="status-kicker">Currently building</span><span>CareerBoost AI</span></span>
         </div>
 
-        <!-- 3. Learning card — word-by-word reveal -->
         <div class="status-card card-learning">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="learn-ico"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           <span class="status-copy"><span class="status-kicker">Continuous grind</span><span class="learn-words">
@@ -189,7 +173,6 @@
           </span></span>
         </div>
 
-        <!-- Visitor card — kept near the hero status cards -->
         <div class="status-card views-card">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="status-copy"><span class="status-kicker">Portfolio signal</span><span><strong id="view-count">—</strong><span id="view-ordinal"></span> visitor</span></span>
@@ -236,7 +219,6 @@
           </div>
         </div>
 
-        <!-- ID Card -->
         <aside class="id-card r" style="transition-delay:.1s">
           <div class="id-mark">Nikk</div>
           <div class="id-name">Nikhil Gumasta</div>
@@ -300,7 +282,6 @@
 
       <div class="tools-grid r" style="transition-delay:.04s">
 
-        <!-- Languages -->
         <div class="tool-group">
           <p class="tool-group-label">Languages</p>
           <div class="tool-icons">
@@ -312,18 +293,16 @@
           </div>
         </div>
 
-        <!-- Data Science -->
         <div class="tool-group">
           <p class="tool-group-label">Data Science</p>
           <div class="tool-icons">
-            <span class="tool-chip" title="Pandas"><i class="devicon-pandas-plain colored"></i><span>Pandas</span></span>
+            <span class="tool-chip tool-chip-pandas" title="Pandas"><i class="devicon-pandas-plain colored"></i><span>Pandas</span></span>
             <span class="tool-chip" title="NumPy"><i class="devicon-numpy-plain colored"></i><span>NumPy</span></span>
-            <span class="tool-chip" title="Matplotlib"><i class="devicon-matplotlib-plain colored"></i><span>Matplotlib</span></span>
+            <span class="tool-chip tool-chip-matplotlib" title="Matplotlib"><i class="devicon-matplotlib-plain colored"></i><span>Matplotlib</span></span>
             <span class="tool-chip" title="Jupyter"><i class="devicon-jupyter-plain colored"></i><span>Jupyter</span></span>
           </div>
         </div>
 
-        <!-- Frameworks -->
         <div class="tool-group">
           <p class="tool-group-label">Frameworks</p>
           <div class="tool-icons">
@@ -333,33 +312,30 @@
           </div>
         </div>
 
-        <!-- Cloud & Infra -->
         <div class="tool-group">
           <p class="tool-group-label">Cloud &amp; Infra</p>
           <div class="tool-icons">
             <span class="tool-chip" title="Azure"><i class="devicon-azure-plain colored"></i><span>Azure</span></span>
             <span class="tool-chip" title="Ubuntu"><i class="devicon-ubuntu-plain colored"></i><span>Ubuntu</span></span>
-            <span class="tool-chip" title="Linux"><i class="devicon-linux-plain colored"></i><span>Linux</span></span>
+            <span class="tool-chip tool-chip-linux" title="Linux"><i class="devicon-linux-plain colored"></i><span>Linux</span></span>
           </div>
         </div>
 
-        <!-- Dev Tools -->
         <div class="tool-group">
           <p class="tool-group-label">Dev Tools</p>
           <div class="tool-icons">
             <span class="tool-chip" title="Git"><i class="devicon-git-plain colored"></i><span>Git</span></span>
             <span class="tool-chip" title="GitHub"><i class="devicon-github-original colored"></i><span>GitHub</span></span>
             <span class="tool-chip" title="VS Code"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></span>
-            <span class="tool-chip tool-chip-cursor" title="Cursor IDE"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#1a1a1a"/><path d="M8 8h16v2H8zm0 7h16v2H8zm0 7h10v2H8z" fill="white"/><circle cx="24" cy="22" r="4" fill="#00b4d8"/></svg><span>Cursor</span></span>
+            <span class="tool-chip tool-chip-cursor" title="Cursor IDE"><svg width="18" height="18" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#111111"/><path d="M8 5.5 24.5 14 17 16.5 14.5 24.5 8 5.5Z" fill="white"/><path d="m14.5 20.5 3.2-4" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/></svg><span>Cursor IDE</span></span>
           </div>
         </div>
 
-        <!-- DSA -->
         <div class="tool-group">
           <p class="tool-group-label">Currently Grinding</p>
           <div class="tool-icons">
             <span class="tool-chip" title="Java"><i class="devicon-java-plain colored"></i><span>Java</span></span>
-            <span class="tool-chip" title="DSA"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><span>DSA</span></span>
+            <span class="tool-chip tool-chip-dsa" title="Data Structures and Algorithms"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 2.5 6.8 12 11.5l9.5-4.7L12 2Z" fill="#f59e0b"/><path d="m2.5 12 9.5 4.8 9.5-4.8" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m2.5 16.8 9.5 4.7 9.5-4.7" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>DSA</span></span>
           </div>
         </div>
 
@@ -381,7 +357,6 @@
       </div>
 
       <div class="proj-grid">
-        <!-- Project 1 -->
         <article class="proj-card proj-card-featured r" data-categories="ai cloud">
           <div class="proj-card-header">
             <p class="proj-kicker">01 · Featured</p>
@@ -398,7 +373,6 @@
           </div><button class="project-details-btn" type="button">View details</button>
         </article>
 
-        <!-- Project 2 -->
         <article class="proj-card r" style="transition-delay:.06s" data-categories="ai">
           <div class="proj-card-header">
             <p class="proj-kicker">02</p>
@@ -411,7 +385,6 @@
           </div><button class="project-details-btn" type="button">View details</button>
         </article>
 
-        <!-- Project 3 -->
         <article class="proj-card r" style="transition-delay:.12s" data-categories="ai data">
           <div class="proj-card-header">
             <p class="proj-kicker">03</p>
@@ -424,7 +397,6 @@
           </div><button class="project-details-btn" type="button">View details</button>
         </article>
 
-        <!-- Project 4 -->
         <article class="proj-card r" style="transition-delay:.18s" data-categories="ai data">
           <div class="proj-card-header">
             <p class="proj-kicker">04 · In progress</p>
@@ -489,7 +461,6 @@
         </div>
       </div>
 
-      <!-- Notable repos -->
       <div class="repo-grid r" style="transition-delay:.08s">
         <a href="https://github.com/CyberAkhil/openclaw-ai-bot" target="_blank" rel="noopener" class="repo-card">
           <div class="repo-top">
@@ -520,7 +491,6 @@
       <h2 class="cta-h2 r" style="transition-delay:.04s">Want to work together?<br>Just send a message.</h2>
       <p class="cta-sub r" style="transition-delay:.08s">Open to internships and hackathons. Always up for a good collaboration.</p>
 
-      <!-- Contact form -->
       <form id="contact-form" class="contact-form r" style="transition-delay:.12s">
         <div class="form-row">
           <div class="form-group">
@@ -549,10 +519,8 @@
         </div>
       </form>
 
-      <!-- Toast notification -->
       <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-      <!-- Social links row -->
       <div class="cta-links r" style="transition-delay:.18s">
         <a href="mailto:nikhilgumasta1@gmail.com" class="cta-link-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>
