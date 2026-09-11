@@ -364,9 +364,9 @@ function graphFallback(graph) {
   graph.appendChild(img);
 }
 
-const VIEW_COUNT_KEY = 'nikk-portfolio-view-count';
-const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted';
-const VIEW_CONSENT_KEY = 'nikk-portfolio-view-consent';
+const VIEW_COUNT_KEY = 'nikk-portfolio-view-count-v2';
+const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted-v2';
+const VIEW_CONSENT_KEY = 'nikk-portfolio-view-consent-v2';
 
 function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
