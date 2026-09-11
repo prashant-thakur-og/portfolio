@@ -1712,12 +1712,31 @@ footer span {
 
 /* Hero views-card updated style */
 .views-card > span { font-size: .8rem; }
-.views-card strong {
+  .views-card strong {
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: .82rem;
   color: var(--ink);
-}
+  }
+  .visitor-allow {
+  margin-left: auto;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 6px 10px;
+  font: 600 .7rem var(--font-mono);
+  cursor: pointer;
+  }
+  .visitor-allow:hover { background: var(--accent); color: var(--bg); }
+  .visitor-allow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .visitor-allow[hidden], .visitor-consent-note[hidden] { display: none; }
+  .visitor-consent-note {
+  flex-basis: 100%;
+  font-size: .68rem;
+  color: var(--muted);
+  line-height: 1.4;
+  }
 
 /* --------------------------------------------------------------------------
    DEVICON TAG ICONS

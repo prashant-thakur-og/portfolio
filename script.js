@@ -366,6 +366,7 @@ function graphFallback(graph) {
 
 const VIEW_COUNT_KEY = 'nikk-portfolio-view-count';
 const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted';
+const VIEW_CONSENT_KEY = 'nikk-portfolio-view-consent';
 
 function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
@@ -391,7 +392,23 @@ async function bumpViews() {
   const heroCount   = document.getElementById('view-count');
   const ctaCount    = document.getElementById('view-count-contact');
   const chip        = heroCount?.closest('.views-card');
+  const allowButton = document.getElementById('visitor-allow');
+  const consentNote = document.getElementById('visitor-consent-note');
 
+  if (localStorage.getItem(VIEW_CONSENT_KEY) !== '1') {
+    if (allowButton) {
+      allowButton.hidden = false;
+      allowButton.addEventListener('click', () => {
+        localStorage.setItem(VIEW_CONSENT_KEY, '1');
+        allowButton.hidden = true;
+        if (consentNote) consentNote.textContent = 'Thanks — this browser will count only once.';
+        bumpViews();
+      }, { once: true });
+    }
+    return;
+  }
+
+  if (allowButton) allowButton.hidden = true;
   try {
     const savedCount = Number(localStorage.getItem(VIEW_COUNT_KEY));
     const alreadyCounted = localStorage.getItem(VIEW_COUNTED_KEY) === '1';
