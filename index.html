@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 <title>Nikk — Nikhil Gumasta, AI Engineer</title>
-<meta name="description" content="Nikhil Gumasta — 2nd-year AI & DS student at SATI Vidisha building agentic AI systems, LLM infrastructure, and cloud deployments on Azure.">
+<meta name="description" content="Nikhil Gumasta — AI & Data Science student at SATI Vidisha learning data science and building practical AI tools, data pipelines, and full-stack applications.">
 <meta property="og:title" content="Nikk — Nikhil Gumasta, AI Engineer">
 <meta property="og:description" content="Building LLMs, agentic pipelines, and cloud infra that stay up — not just coursework.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://nikhilg.is-a.dev/">
+<meta property="og:image" content="https://nikhilg.is-a.dev/Nikk-removebg-preview.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nikhilg.is-a.dev/Nikk-removebg-preview.png">
+<meta name="theme-color" content="#08080a">
+<link rel="canonical" href="https://nikhilg.is-a.dev/">
+<link rel="icon" type="image/png" href="Nikk-removebg-preview.png">
 
-<!-- Plausible Analytics: replace the domain with the verified site in Plausible. No personal data is sent. -->
-<script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script>
-
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-<!-- EmailJS -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script defer src="/_vercel/insights/script.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Theme init script (prevents flash) — dark-first -->
 <script>
 (function(){
-  const saved = localStorage.getItem('nikk-theme');
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  const theme = saved || (prefersLight ? 'light' : 'dark');
+  const saved = localStorage.getItem('nikk-theme-v2');
+  const theme = saved || 'light';
   document.documentElement.setAttribute('data-theme', theme);
 })();
 </script>
 
-<!-- Skip to content -->
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Scroll progress bar -->
 <div id="prog" aria-hidden="true"></div>
 
 <!-- ════════════════════════════════ MOBILE MENU ═══════════════════════════════ -->
@@ -65,7 +65,10 @@
 <!-- ════════════════════════════════ NAV ═══════════════════════════════════════ -->
 <header id="site-header">
   <nav id="nav" aria-label="Primary navigation">
-    <a href="#hero" class="n-logo" id="nav-logo">Nikk</a>
+    <a href="#hero" class="n-logo" id="nav-logo">
+      <img src="Nikk-removebg-preview.png" alt="Nikhil Gumasta">
+      <span>Nikk</span>
+    </a>
 
     <ul class="n-links" role="list">
       <li><a href="#about"      data-s="about">About</a></li>
@@ -79,14 +82,12 @@
     <div class="n-right">
       <a href="mailto:nikhilgumasta1@gmail.com?subject=Internship%20—%20Nikk" class="btn btn-primary btn-sm">Hire me</a>
 
-      <!-- Theme toggle -->
       <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-8.48-5.52 1.41-1.41M18.36 7.05l1.41-1.41M2 12h2M20 12h2M5.64 18.36l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
       
 
-      <!-- Burger -->
       <button class="burger" id="bg" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mob">
         <span></span><span></span>
       </button>
@@ -99,42 +100,48 @@
 
   <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
   <section id="hero" class="sec hero-sec">
-    <!-- Ambient glow -->
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="bg-grid" aria-hidden="true"></div>
 
     <div class="sw hero-inner">
-      <div class="hero-top">
-        <!-- Avatar initials badge -->
+      <div class="hero-layout">
         <div class="avatar r" style="transition-delay:.02s">
-          <span>NG</span>
+          <img src="Nikk-removebg-preview.png" alt="Nikhil Gumasta" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+          <span class="avatar-initials">NG</span>
         </div>
+        <div class="hero-content">
+          <div class="hero-copy">
+          <div class="hero-top">
+            <p class="hero-kicker r" style="transition-delay:.04s">
+              AI &amp; Data Science &middot; SATI Vidisha &middot; <span class="js-year">Pre-Final Year Undergraduate</span>
+            </p>
+          </div>
 
-        <p class="hero-kicker r" style="transition-delay:.04s">
-          AI &amp; Data Science &middot; SATI Vidisha &middot; <span class="js-year">Pre-Final Year Undergraduate</span>
-        </p>
-      </div>
+          <h1 class="hero-h1 r" style="transition-delay:.12s">
+            <span class="gradient-text">Nikhil Gumasta</span><span class="period">.</span>
+          </h1>
 
-      <h1 class="hero-h1 r" style="transition-delay:.12s">
-        <span class="gradient-text">Nikhil Gumasta</span><span class="period">.</span>
-      </h1>
+          <p class="hero-subtitle r" style="transition-delay:.12s">
+            <span class="role-flip-wrap" aria-live="polite">
+              <span class="role-flip-track" id="role-track">
+                <span class="role-flip-item">AIADS Undergrad</span>
+                <span class="role-flip-item">Data Scientist</span>
+                <span class="role-flip-item">Product Manager</span>
+              </span>
+            </span>
+          </p>
+          </div>
 
-      <!-- Slot-machine role flip (Abiram-style) -->
-      <p class="hero-subtitle r" style="transition-delay:.12s">
-        <span class="role-flip-wrap" aria-live="polite">
-          <span class="role-flip-track" id="role-track">
-            <span class="role-flip-item">AI &amp; Data Analytics Engineer</span>
-            <span class="role-flip-item">Full-Stack Developer</span>
-            <span class="role-flip-item">Tech Enthusiast</span>
-          </span>
-      </p>
+          <p class="hero-lead r" style="transition-delay:.16s">
+            I’m learning data science and building practical AI tools, data pipelines, and full-stack applications.
+          </p>
 
-      <p class="hero-lead r" style="transition-delay:.16s">
-        I build things that actually work — AI agents, data pipelines, full-stack apps. <span class="js-year">Pre-Final Year Undergraduate</span> at SATI Vidisha, studying AI &amp; Data Science.
-      </p>
+          <div class="hero-actions r" style="transition-delay:.20s">
+            <a href="#projects" class="btn btn-primary">See My Projects</a>
+            <a href="Nikhil%20Resume.pdf" class="btn btn-outline" target="_blank" rel="noopener">Resume</a>
+          </div>
 
-      <!-- Social links -->
-      <div class="hero-socials r" style="transition-delay:.24s" role="list" aria-label="Social links">
+          <div class="hero-socials r" style="transition-delay:.24s" role="list" aria-label="Social links">
         <a href="https://github.com/CyberAkhil" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub" title="GitHub" role="listitem">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
         </a>
@@ -144,40 +151,35 @@
         <a href="mailto:nikhilgumasta1@gmail.com" class="social-btn" aria-label="Email" title="Email" role="listitem">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>
         </a>
-      </div>
+          </div>
 
-      <!-- Status cards — animated -->
-      <div class="status-cards r" style="transition-delay:.28s" aria-label="Current status">
+          <div class="status-cards r" style="transition-delay:.28s" aria-label="Current status">
 
-        <!-- 1. Award card — gold shimmer -->
         <div class="status-card card-award">
           <svg class="award-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-          <span>Counterspell '24 Winner</span>
+          <span class="status-copy"><span class="status-kicker">Achievement</span><span>Counterspell '24 Winner</span></span>
           <span class="card-shine" aria-hidden="true"></span>
         </div>
 
-        <!-- 2. Building card — live recording dot -->
         <div class="status-card card-building">
           <span class="rec-dot" aria-hidden="true"></span>
-          <span class="status-label">Building</span>
-          <span>OpenClaw agent platform</span>
+          <span class="status-copy"><span class="status-kicker">Currently building</span><span>CareerBoost AI</span></span>
         </div>
 
-        <!-- 3. Learning card — word-by-word reveal -->
         <div class="status-card card-learning">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="learn-ico"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          <span class="status-label">Learning</span>
-          <span class="learn-words">
-            <span class="lw" style="--lw-d:0s">LangGraph</span><span class="lw-sep" style="--lw-d:.15s"> · </span><span class="lw" style="--lw-d:.3s">Multi-agent AI</span>
-          </span>
+          <span class="status-copy"><span class="status-kicker">Continuous grind</span><span class="learn-words">
+            <span class="lw" style="--lw-d:0s">DSA</span><span class="lw-sep" style="--lw-d:.15s"> · </span><span class="lw" style="--lw-d:.3s">with JAVA</span>
+          </span></span>
         </div>
 
-        <!-- 4. Visitor card — digit roll -->
         <div class="status-card views-card">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span>You are the <strong id="view-count">—</strong><span id="view-ordinal"></span> visitor</span>
+          <span class="status-copy"><span class="status-kicker">Portfolio signal</span><span><strong id="view-count">—</strong><span id="view-ordinal"></span> visitor</span></span>
         </div>
 
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -191,10 +193,10 @@
       <div class="about-grid">
         <div class="about-text">
           <p class="body-p r" style="transition-delay:.04s">
-            I'm <strong>Nikhil Gumasta</strong> — Nikk. <span class="js-year">Pre-Final Year Undergraduate</span> in AI &amp; Data Science at SATI Vidisha. Most of what I build started as a problem I ran into and couldn’t ignore — agents on Azure, data work in Python, a few full-stack apps along the way.
+            I'm <strong>Nikhil Gumasta</strong> — Nikk. <span class="js-year">Pre-Final Year Undergraduate</span> in AI &amp; Data Science at SATI Vidisha. I learn by building practical tools around problems students and teams actually face — data work in Python, useful AI workflows, and full-stack apps.
           </p>
           <p class="body-p r" style="transition-delay:.08s">
-            Right now I’m deep into agentic AI — systems that plan and act on their own. Outside of that, I think a lot about what intelligence actually is. Philosophy, theology, the whole thing.
+            Right now I’m deep into DSA with Java — learning to break down problems, reason about trade-offs, and write solutions that hold up under pressure. The syntax is only part of it; the real work is learning how to think clearly.
           </p>
 
           <div class="meta-groups r" style="transition-delay:.12s">
@@ -204,7 +206,7 @@
             </div>
             <div class="meta-group">
               <p class="meta-label">Focus</p>
-              <div class="pills"><span>Azure</span><span>Data Analytics</span><span>Agentic AI</span></div>
+              <div class="pills"><span>Data Science</span><span>CareerBoost AI</span><span>Full Stack</span></div>
             </div>
             <div class="meta-group">
               <p class="meta-label">Wins</p>
@@ -217,7 +219,6 @@
           </div>
         </div>
 
-        <!-- ID Card -->
         <aside class="id-card r" style="transition-delay:.1s">
           <div class="id-mark">Nikk</div>
           <div class="id-name">Nikhil Gumasta</div>
@@ -241,41 +242,29 @@
   <section id="skills" class="sec">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">02</span><h2 class="sec-h2">Skills</h2><span class="sec-line" aria-hidden="true"></span></div>
-      <p class="sec-sub r">What I actually use. Not a list I padded for a resume.</p>
+      <p class="sec-sub r">A practical toolkit for building intelligent products.</p>
 
       <div class="steps">
         <article class="step r">
           <div class="step-n">01</div>
-          <h3>AI &amp; Data Analytics</h3>
-          <p>Pandas, NumPy, Matplotlib for data work. SQL for querying. Plugged in LLM APIs and RAG when I needed smarter answers from data.</p>
-          <div class="tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>SQL</span><span>RAG</span></div>
-        </article>
-        <article class="step r" style="transition-delay:.06s">
-          <div class="step-n">02</div>
-          <h3>Agentic Systems</h3>
-          <p>Autonomous multi-agent pipelines — planning, tool use, memory, and task delegation via modern orchestration frameworks.</p>
-          <div class="tags"><span>LangChain</span><span>LangGraph</span><span>CrewAI</span><span>AutoGen</span><span>OpenClaw</span></div>
+          <h3>Data Science</h3>
+          <p>Working with data through Python, Pandas, NumPy, Matplotlib, and SQL — from cleaning and exploration to useful insights.</p>
+          <div class="tags"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>SQL</span></div>
         </article>
         <article class="step r" style="transition-delay:.12s">
-          <div class="step-n">03</div>
-          <h3>Python &amp; Backend</h3>
-          <p>Python is my main language. I use FastAPI for backends, Node.js when needed, and I’ve written a fair amount of data pipeline code.</p>
-          <div class="tags"><span>Python</span><span>Pandas</span><span>FastAPI</span><span>Node.js</span><span>REST APIs</span></div>
+          <div class="step-n">02</div>
+          <h3>Python, Backend &amp; Frontend</h3>
+          <p>Building complete applications with Python, FastAPI, Node.js, React, and JavaScript — from APIs and data flow to clear, usable interfaces.</p>
+          <div class="tags"><span>Python</span><span>FastAPI</span><span>Node.js</span><span>React</span><span>JavaScript</span><span>REST APIs</span></div>
         </article>
         <article class="step r" style="transition-delay:.18s">
-          <div class="step-n">04</div>
+          <div class="step-n">03</div>
           <h3>Cloud &amp; DevOps</h3>
-          <p>I run things on Azure VMs. Ubuntu, Linux CLI, keeping processes alive — learnt most of it while deploying OpenClaw.</p>
+          <p>I use Azure VMs, Ubuntu, Linux CLI, and GitHub to deploy and maintain the applications I build.</p>
           <div class="tags"><span>Azure</span><span>Ubuntu 24.04</span><span>Linux CLI</span><span>GitHub</span></div>
         </article>
         <article class="step r" style="transition-delay:.24s">
-          <div class="step-n">05</div>
-          <h3>Frontend &amp; Full Stack</h3>
-          <p>React for frontends, FastAPI on the backend. I care about making UIs that don’t confuse people.</p>
-          <div class="tags"><span>React</span><span>JavaScript</span><span>HTML/CSS</span><span>UI/UX</span></div>
-        </article>
-        <article class="step r" style="transition-delay:.3s">
-          <div class="step-n">06</div>
+          <div class="step-n">04</div>
           <h3>Java &amp; DSA</h3>
           <p>Learning DSA in Java right now. Slower than Python but it makes you think more carefully.</p>
           <div class="tags"><span>Java</span><span>DSA</span><span>OOP</span><span>Algorithms</span></div>
@@ -289,11 +278,10 @@
   <section id="tools" class="sec sec-alt">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">03</span><h2 class="sec-h2">Tools</h2><span class="sec-line" aria-hidden="true"></span></div>
-      <p class="sec-sub r">Everything I actually open on a regular basis.</p>
+      <p class="sec-sub r">The languages and platforms behind my daily workflow.</p>
 
       <div class="tools-grid r" style="transition-delay:.04s">
 
-        <!-- Languages -->
         <div class="tool-group">
           <p class="tool-group-label">Languages</p>
           <div class="tool-icons">
@@ -305,18 +293,16 @@
           </div>
         </div>
 
-        <!-- Data Science -->
         <div class="tool-group">
           <p class="tool-group-label">Data Science</p>
           <div class="tool-icons">
-            <span class="tool-chip" title="Pandas"><i class="devicon-pandas-plain colored"></i><span>Pandas</span></span>
+            <span class="tool-chip tool-chip-pandas" title="Pandas"><i class="devicon-pandas-plain colored"></i><span>Pandas</span></span>
             <span class="tool-chip" title="NumPy"><i class="devicon-numpy-plain colored"></i><span>NumPy</span></span>
-            <span class="tool-chip" title="Matplotlib"><i class="devicon-matplotlib-plain colored"></i><span>Matplotlib</span></span>
+            <span class="tool-chip tool-chip-matplotlib" title="Matplotlib"><i class="devicon-matplotlib-plain colored"></i><span>Matplotlib</span></span>
             <span class="tool-chip" title="Jupyter"><i class="devicon-jupyter-plain colored"></i><span>Jupyter</span></span>
           </div>
         </div>
 
-        <!-- Frameworks -->
         <div class="tool-group">
           <p class="tool-group-label">Frameworks</p>
           <div class="tool-icons">
@@ -326,33 +312,30 @@
           </div>
         </div>
 
-        <!-- Cloud & Infra -->
         <div class="tool-group">
           <p class="tool-group-label">Cloud &amp; Infra</p>
           <div class="tool-icons">
             <span class="tool-chip" title="Azure"><i class="devicon-azure-plain colored"></i><span>Azure</span></span>
             <span class="tool-chip" title="Ubuntu"><i class="devicon-ubuntu-plain colored"></i><span>Ubuntu</span></span>
-            <span class="tool-chip" title="Linux"><i class="devicon-linux-plain colored"></i><span>Linux</span></span>
+            <span class="tool-chip tool-chip-linux" title="Linux"><i class="devicon-linux-plain colored"></i><span>Linux</span></span>
           </div>
         </div>
 
-        <!-- Dev Tools -->
         <div class="tool-group">
           <p class="tool-group-label">Dev Tools</p>
           <div class="tool-icons">
             <span class="tool-chip" title="Git"><i class="devicon-git-plain colored"></i><span>Git</span></span>
             <span class="tool-chip" title="GitHub"><i class="devicon-github-original colored"></i><span>GitHub</span></span>
             <span class="tool-chip" title="VS Code"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></span>
-            <span class="tool-chip tool-chip-cursor" title="Cursor IDE"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#1a1a1a"/><path d="M8 8h16v2H8zm0 7h16v2H8zm0 7h10v2H8z" fill="white"/><circle cx="24" cy="22" r="4" fill="#00b4d8"/></svg><span>Cursor</span></span>
+            <span class="tool-chip tool-chip-cursor" title="Cursor IDE"><svg width="18" height="18" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#111111"/><path d="M8 5.5 24.5 14 17 16.5 14.5 24.5 8 5.5Z" fill="white"/><path d="m14.5 20.5 3.2-4" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/></svg><span>Cursor IDE</span></span>
           </div>
         </div>
 
-        <!-- DSA -->
         <div class="tool-group">
           <p class="tool-group-label">Currently Grinding</p>
           <div class="tool-icons">
             <span class="tool-chip" title="Java"><i class="devicon-java-plain colored"></i><span>Java</span></span>
-            <span class="tool-chip" title="DSA"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><span>DSA</span></span>
+            <span class="tool-chip tool-chip-dsa" title="Data Structures and Algorithms"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 2.5 6.8 12 11.5l9.5-4.7L12 2Z" fill="#f59e0b"/><path d="m2.5 12 9.5 4.8 9.5-4.8" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m2.5 16.8 9.5 4.7 9.5-4.7" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>DSA</span></span>
           </div>
         </div>
 
@@ -364,11 +347,17 @@
   <section id="projects" class="sec sec-alt">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">04</span><h2 class="sec-h2">Projects</h2><span class="sec-line" aria-hidden="true"></span></div>
-      <p class="sec-sub r">Things I actually finished and shipped.</p>
+      <p class="sec-sub r">Selected work, shipped systems, and experiments in progress.</p>
+
+      <div class="project-filters r" role="group" aria-label="Filter projects by category">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" type="button" data-filter="ai" aria-pressed="false">AI</button>
+        <button class="filter-btn" type="button" data-filter="data" aria-pressed="false">Data</button>
+        <button class="filter-btn" type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
+      </div>
 
       <div class="proj-grid">
-        <!-- Project 1 -->
-        <article class="proj-card r">
+        <article class="proj-card proj-card-featured r" data-categories="ai cloud">
           <div class="proj-card-header">
             <p class="proj-kicker">01 · Featured</p>
             <div class="proj-links">
@@ -381,29 +370,22 @@
           <p class="proj-impact">Self-hosted on Azure VM &middot; Live in production &middot; Telegram + voice + multi-LLM routing</p>
           <p>My most involved project. A full AI agent running on an Azure VM — responds on Telegram, makes voice calls via Twilio, handles email. Routes between multiple LLMs depending on the task.</p>          <div class="tags">
             <span>OpenClaw</span><span>Azure VM</span><span>Node.js</span><span>Telegram</span><span>Twilio</span><span>OpenRouter</span>
-          </div>
+          </div><button class="project-details-btn" type="button">View details</button>
         </article>
 
-        <!-- Project 2 -->
-        <article class="proj-card r" style="transition-delay:.06s">
+        <article class="proj-card r" style="transition-delay:.06s" data-categories="ai">
           <div class="proj-card-header">
             <p class="proj-kicker">02</p>
-            <div class="proj-links">
-              <a href="#" class="proj-link" aria-label="View project">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-              </a>
-            </div>
           </div>
-          <h3>Claude-like AI chatbot</h3>
-          <p class="proj-impact">Full-stack &middot; Gemini 1.5 Flash + RAG &middot; Designed to scale into agentic system</p>
-          <p>Built a Claude-style chatbot with Gemini 1.5 Flash, FastAPI backend, React frontend. Added RAG with ChromaDB so it can actually remember context. Planning to turn it into a proper agent.</p>
+          <h3>Personal AI Assistant</h3>
+          <p class="proj-impact">Full-stack &middot; Gemini 1.5 Flash + RAG &middot; Context-aware conversations</p>
+          <p>Built a personal AI assistant with Gemini 1.5 Flash, FastAPI backend, React frontend, and ChromaDB for context-aware conversations and useful everyday help.</p>
           <div class="tags">
             <span>Gemini 1.5</span><span>FastAPI</span><span>React</span><span>ChromaDB</span>
-          </div>
+          </div><button class="project-details-btn" type="button">View details</button>
         </article>
 
-        <!-- Project 3 -->
-        <article class="proj-card r" style="transition-delay:.12s">
+        <article class="proj-card r" style="transition-delay:.12s" data-categories="ai data">
           <div class="proj-card-header">
             <p class="proj-kicker">03</p>
           </div>
@@ -412,25 +394,36 @@
           <p>Wrote a Python script that generates 125 JSONL training samples — reasoning, coding, structured output, safety. Took a while to get zero validation errors but got there.</p>
           <div class="tags">
             <span>Python</span><span>JSONL</span><span>Fine-tuning</span>
-          </div>
+          </div><button class="project-details-btn" type="button">View details</button>
         </article>
 
-        <!-- Project 4 -->
-        <article class="proj-card r" style="transition-delay:.18s">
+        <article class="proj-card r" style="transition-delay:.18s" data-categories="ai data">
           <div class="proj-card-header">
             <p class="proj-kicker">04 · In progress</p>
             <span class="badge-wip">Building</span>
           </div>
-          <h3>Multi-agent agentic system</h3>
-          <p class="proj-impact">LangGraph + CrewAI &middot; Telegram control interface &middot; Self-planning with memory</p>
-          <p>Taking the chatbot further — proper multi-agent setup with LangGraph and CrewAI. Control it through Telegram. Still figuring out the memory and tool-use parts.</p>
+          <h3>CareerBoost AI</h3>
+          <p class="proj-impact">In progress &middot; Resume analysis &middot; Company-specific placement preparation</p>
+          <p>Building a domain-specific placement assistant that scores resumes, identifies skill gaps, surfaces company-specific interview insights, and creates a week-wise preparation roadmap.</p>
           <div class="tags">
-            <span>LangGraph</span><span>CrewAI</span><span>AutoGen</span>
-          </div>
+            <span>Python</span><span>AI</span><span>Resume Analysis</span><span>Skill Gap Analysis</span><span>Roadmaps</span>
+          </div><button class="project-details-btn" type="button">View details</button>
         </article>
       </div>
     </div>
   </section>
+
+  <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" hidden>
+    <div class="project-modal-backdrop" data-modal-close></div>
+    <div class="project-modal-panel">
+      <button class="modal-close" type="button" aria-label="Close project details" data-modal-close>&times;</button>
+      <p class="proj-kicker">Project details</p>
+      <h2 id="project-modal-title"></h2>
+      <p class="project-modal-impact" id="project-modal-impact"></p>
+      <p id="project-modal-description"></p>
+      <div class="tags" id="project-modal-tags"></div>
+    </div>
+  </div>
 
 
   <!-- ── OPEN SOURCE ─────────────────────────────────────────────────────── -->
@@ -468,7 +461,6 @@
         </div>
       </div>
 
-      <!-- Notable repos -->
       <div class="repo-grid r" style="transition-delay:.08s">
         <a href="https://github.com/CyberAkhil/openclaw-ai-bot" target="_blank" rel="noopener" class="repo-card">
           <div class="repo-top">
@@ -499,8 +491,7 @@
       <h2 class="cta-h2 r" style="transition-delay:.04s">Want to work together?<br>Just send a message.</h2>
       <p class="cta-sub r" style="transition-delay:.08s">Open to internships and hackathons. Always up for a good collaboration.</p>
 
-      <!-- Contact form -->
-      <form id="contact-form" class="contact-form r" style="transition-delay:.12s" novalidate>
+      <form id="contact-form" class="contact-form r" style="transition-delay:.12s">
         <div class="form-row">
           <div class="form-group">
             <label for="from_name">Name</label>
@@ -508,7 +499,7 @@
           </div>
           <div class="form-group">
             <label for="reply_to">Email</label>
-            <input type="email" id="reply_to" name="reply_to" placeholder="your@email.com" autocomplete="email" required>
+            <input type="email" id="reply_to" name="reply_to" placeholder="your@email.com" autocomplete="email" maxlength="254" required>
           </div>
         </div>
         <div class="form-group">
@@ -524,15 +515,12 @@
             <span id="btn-text">Send message</span>
             <svg id="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
           </button>
-          <p class="form-note">Or email directly: <a href="mailto:nikhilgumasta1@gmail.com" data-analytics-event="email-click">nikhilgumasta1@gmail.com</a></p>
-  <p class="privacy-note">Anonymous visits are not named. Submitting this form voluntarily shares your name and email with Nikhil so he can reply.</p>
+          <p class="form-note">Or email directly: <a href="mailto:nikhilgumasta1@gmail.com">nikhilgumasta1@gmail.com</a></p>
         </div>
       </form>
 
-      <!-- Toast notification -->
       <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-      <!-- Social links row -->
       <div class="cta-links r" style="transition-delay:.18s">
         <a href="mailto:nikhilgumasta1@gmail.com" class="cta-link-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>
@@ -548,10 +536,6 @@
         </a>
       </div>
 
-      <!-- Visitor counter -->
-      <p class="visitor-line r" style="transition-delay:.24s" aria-live="polite">
-        <span>You are the <strong id="view-count-contact">—</strong><span id="view-ordinal-contact"></span> visitor on this site.</span> Anonymous visits stay anonymous; identified visitors choose to submit the contact form.
-      </p>
     </div>
   </section>
 
@@ -559,8 +543,7 @@
 
 <!-- ════════════════════════════════ FOOTER ════════════════════════════════════ -->
 <footer>
-  <span>© 2025 Nikk · Nikhil Gumasta</span>
-  <span>SATI Vidisha · AIADS 2024–28</span>
+  <span>Nikhil Gumasta · AI Systems Builder</span>
   <span>Built to get hired.</span>
 </footer>
 

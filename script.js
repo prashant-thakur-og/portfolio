@@ -2,7 +2,6 @@
    NIKK PORTFOLIO V3 — script.js
    ═══════════════════════════════════════════════════════════════════════════ */
 
-// ── EMAILJS INIT ─────────────────────────────────────────────────────────────
 const EMAILJS_PUBLIC_KEY = 'Z2iOJ714x2lALCzbb';
 const EMAILJS_SERVICE_ID = 'service_c0letke';
 const EMAILJS_TEMPLATE_ID = 'template_p0m3bzc';
@@ -11,7 +10,6 @@ if (typeof emailjs !== 'undefined') {
   emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
-// ── DOM REFS ──────────────────────────────────────────────────────────────────
 const nav = document.getElementById('nav');
 const prog = document.getElementById('prog');
 const burger = document.getElementById('bg');
@@ -22,25 +20,10 @@ const submitBtn = document.getElementById('submit-btn');
 const btnText = document.getElementById('btn-text');
 const toast = document.getElementById('toast');
 
-// Plausible receives event names only; never send names, email addresses, or message text.
-function trackEvent(name) {
-  if (typeof window.plausible === 'function') window.plausible(name);
-}
 
-document.querySelectorAll('[data-analytics-event]').forEach(link => {
-  link.addEventListener('click', () => trackEvent(link.dataset.analyticsEvent));
-});
-
-// ── AUTO YEAR LABEL ───────────────────────────────────────────────────────────
-// Batch started July 2024 (4-year B.Tech, 2024-2028)
-// Jul-Jun academic calendar:
-//   Jul 2024-Jun 2025  =>  1st Year Undergraduate
-//   Jul 2025-Jun 2026  =>  2nd Year Undergraduate
-//   Jul 2026-Jun 2027  =>  Pre-Final Year Undergraduate
-//   Jul 2027-Jun 2028  =>  Final Year Undergraduate
 function getAcademicYear() {
   const BATCH_START_YEAR  = 2024;
-  const BATCH_START_MONTH = 7; // July (1-indexed)
+  const BATCH_START_MONTH = 7;
   const labels = [
     '1st Year Undergraduate',
     '2nd Year Undergraduate',
@@ -49,9 +32,9 @@ function getAcademicYear() {
   ];
   const now   = new Date();
   const yr    = now.getFullYear();
-  const mo    = now.getMonth() + 1; // 1-indexed
+  const mo    = now.getMonth() + 1;
   const academicYearStart = (mo >= BATCH_START_MONTH) ? yr : yr - 1;
-  const idx = academicYearStart - BATCH_START_YEAR; // 0-based
+  const idx = academicYearStart - BATCH_START_YEAR;
   return labels[Math.max(0, Math.min(idx, labels.length - 1))];
 }
 
@@ -62,8 +45,7 @@ function applyAcademicYear() {
   });
 }
 
-// ── THEME TOGGLE ──────────────────────────────────────────────────────────────
-const THEME_KEY = 'nikk-theme';
+const THEME_KEY = 'nikk-theme-v2';
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
@@ -71,21 +53,66 @@ function applyTheme(theme) {
   themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
 }
 
-function toggleTheme() {
+let themeWaveTimer;
+let themeApplyTimer;
+
+function toggleTheme({ x, y, duration = 1350, animation = 'cubic-bezier(.16, 1, .3, 1)' } = {}) {
   const current = document.documentElement.getAttribute('data-theme');
-  applyTheme(current === 'dark' ? 'light' : 'dark');
+  const next = current === 'dark' ? 'light' : 'dark';
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reducedMotion) {
+    applyTheme(next);
+    return;
+  }
+
+  const toggleBounds = themeToggle.getBoundingClientRect();
+  const waveX = Number.isFinite(x) && x > 0 ? x : toggleBounds.left + toggleBounds.width / 2;
+  const waveY = Number.isFinite(y) && y > 0 ? y : toggleBounds.top + toggleBounds.height / 2;
+  root.style.setProperty('--wave-duration', `${duration}ms`);
+  root.style.setProperty('--wave-easing', animation);
+
+  let wave = document.querySelector('.theme-wave-overlay');
+  if (!wave) {
+    wave = document.createElement('div');
+    wave.className = 'theme-wave-overlay';
+    document.body.appendChild(wave);
+  }
+
+  const waveSize = Math.hypot(window.innerWidth, window.innerHeight) * 2;
+  wave.style.left = `${waveX}px`;
+  wave.style.top = `${waveY}px`;
+  wave.style.width = `${waveSize}px`;
+  wave.style.height = `${waveSize}px`;
+  wave.style.background = next === 'dark' ? '#08080a' : '#f3eee5';
+  wave.classList.remove('is-active');
+  void wave.offsetWidth;
+  wave.classList.add('is-active');
+
+  clearTimeout(themeApplyTimer);
+  clearTimeout(themeWaveTimer);
+  themeApplyTimer = setTimeout(() => applyTheme(next), duration * .53);
+  themeWaveTimer = setTimeout(() => wave.classList.remove('is-active'), duration);
 }
 
-themeToggle.addEventListener('click', toggleTheme);
+const handleClick = event => {
+  toggleTheme({
+    x: event.clientX,
+    y: event.clientY,
+    duration: 400,
+    animation: 'ease-out'
+  });
+};
 
-// ── SCROLL PROGRESS & NAV STICKY ─────────────────────────────────────────────
+themeToggle.addEventListener('click', handleClick);
+
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
   const max = h.scrollHeight - h.clientHeight;
   prog.style.width = (max ? (h.scrollTop / max) * 100 : 0) + '%';
   nav.classList.toggle('stuck', window.scrollY > 40);
 
-  // Active nav link
   let cur = '';
   document.querySelectorAll('section[id]').forEach(s => {
     if (window.scrollY >= s.offsetTop - 200) cur = s.id;
@@ -95,7 +122,6 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-// ── MOBILE MENU ───────────────────────────────────────────────────────────────
 const setMob = (open) => {
   mob.classList.toggle('on', open);
   burger.classList.toggle('on', open);
@@ -116,7 +142,6 @@ window.addEventListener('resize', () => {
   if (window.innerWidth > 1024 && mob.classList.contains('on')) closeMob();
 });
 
-// ── SMOOTH SCROLL ─────────────────────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const el = document.getElementById(a.getAttribute('href').slice(1));
@@ -127,9 +152,54 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ── ROLE FLIP (slot-machine) ──────────────────────────────────────────────────
-// Cycles role titles by translating the track element upward.
-// Each step moves up by 1 item height (1.4em per item).
+const projectCards = document.querySelectorAll('.proj-card[data-categories]');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectModal = document.getElementById('project-modal');
+const modalTitle = document.getElementById('project-modal-title');
+const modalImpact = document.getElementById('project-modal-impact');
+const modalDescription = document.getElementById('project-modal-description');
+const modalTags = document.getElementById('project-modal-tags');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    filterButtons.forEach(item => {
+      const active = item === button;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    projectCards.forEach(card => {
+      const visible = filter === 'all' || card.dataset.categories.split(' ').includes(filter);
+      card.hidden = !visible;
+    });
+  });
+});
+
+function closeProjectModal() {
+  if (!projectModal) return;
+  projectModal.hidden = true;
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.project-details-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.proj-card');
+    modalTitle.textContent = card.querySelector('h3').textContent;
+    modalImpact.textContent = card.querySelector('.proj-impact').textContent;
+    modalDescription.textContent = card.querySelector('p:not(.proj-kicker):not(.proj-impact)').textContent;
+    modalTags.innerHTML = card.querySelector('.tags').innerHTML;
+    projectModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+document.querySelectorAll('[data-modal-close]').forEach(element => {
+  element.addEventListener('click', closeProjectModal);
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeProjectModal();
+});
+
 (function initRoleFlip() {
   const track = document.getElementById('role-track');
   if (!track) return;
@@ -142,18 +212,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   function flipNext() {
     current = (current + 1) % total;
-    // Move track up: each item is 1.4em tall
     track.style.transform = `translateY(calc(-${current} * 1.4em))`;
   }
 
-  // First flip after 2.5s, then every 2.8s
   setTimeout(() => {
     flipNext();
     setInterval(flipNext, 2800);
   }, 2500);
 })();
 
-// ── INTERSECTION OBSERVER (scroll reveal) ─────────────────────────────────────
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -165,17 +232,26 @@ const obs = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.r, .tli').forEach(el => obs.observe(el));
 
-// ── EMAILJS CONTACT FORM ──────────────────────────────────────────────────────
 function showToast(type, msg) {
   toast.textContent = msg;
   toast.className = 'toast ' + type;
-  // Auto-hide after 6s
   setTimeout(() => { toast.className = 'toast'; }, 6000);
 }
 
 function setLoading(loading) {
   submitBtn.disabled = loading;
   btnText.textContent = loading ? 'Sending…' : 'Send message';
+}
+
+function isValidEmail(value) {
+  if (value.length > 254 || /\.\.|^\.|\.$/.test(value)) return false;
+  const match = value.match(/^[^\s@]+@([^\s@]+)$/);
+  if (!match) return false;
+
+  const domain = match[1];
+  return domain.split('.').every(label => /^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(label))
+    && domain.includes('.')
+    && domain.split('.').at(-1).length >= 2;
 }
 
 function validateForm(form) {
@@ -186,7 +262,7 @@ function validateForm(form) {
     if (!val) {
       el.classList.add('error');
       valid = false;
-    } else if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    } else if (el.type === 'email' && !isValidEmail(val)) {
       el.classList.add('error');
       valid = false;
     }
@@ -195,7 +271,6 @@ function validateForm(form) {
 }
 
 if (contactForm) {
-  // Remove error class on input
   contactForm.querySelectorAll('input, textarea').forEach(el => {
     el.addEventListener('input', () => el.classList.remove('error'));
   });
@@ -208,18 +283,16 @@ if (contactForm) {
       return;
     }
 
-    // Check if EmailJS is configured
     if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || !EMAILJS_PUBLIC_KEY) {
       showToast('error', '⚙ EmailJS not configured yet. See script.js for setup instructions.');
       return;
     }
 
     setLoading(true);
-    toast.className = 'toast'; // hide previous toast
+    toast.className = 'toast';
 
     try {
       await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm);
-      trackEvent('Contact form submission');
       showToast('success', '✓ Message sent! I\'ll get back to you soon.');
       contactForm.reset();
     } catch (err) {
@@ -231,8 +304,6 @@ if (contactForm) {
   });
 }
 
-// ── GITHUB CONTRIBUTION GRAPH ──────────────────────────────────────────────────
-// Real data, no auth, CORS-enabled. Falls back to an image, then a link.
 const GH_USER = 'CyberAkhil';
 
 async function renderContribGraph() {
@@ -253,8 +324,7 @@ async function renderContribGraph() {
     graph.innerHTML = '';
     const frag = document.createDocumentFragment();
 
-    // Pad leading cells so the first column lines up with the correct weekday.
-    const firstWeekday = new Date(days[0].date).getDay(); // 0 = Sunday
+    const firstWeekday = new Date(days[0].date).getDay();
     for (let i = 0; i < firstWeekday; i++) {
       const pad = document.createElement('i');
       pad.className = 'gh-cell gh-pad';
@@ -290,42 +360,58 @@ function graphFallback(graph) {
   img.onerror = () => {
     graph.innerHTML = `<a class="gh-fallback-link" href="https://github.com/${GH_USER}" target="_blank" rel="noopener">View my contributions on GitHub →</a>`;
   };
-  // Accent-green heatmap image; renders fine on any background.
   img.src = `https://ghchart.rshah.org/2f9e6e/${GH_USER}`;
   graph.appendChild(img);
 }
 
-// ── VIEW COUNTER ────────────────────────────────────────────────────────────────
-// Free, no-auth hit counter. Updates both hero chip and contact line.
+const VIEW_COUNT_KEY = 'nikk-portfolio-view-count';
+const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted';
+
 function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;
   return s[(v - 20) % 10] || s[v] || s[0];
 }
 
-async function bumpViews() {
+function renderViewCount(n) {
   const heroCount   = document.getElementById('view-count');
   const heroOrdinal = document.getElementById('view-ordinal');
   const ctaCount    = document.getElementById('view-count-contact');
   const ctaOrdinal  = document.getElementById('view-ordinal-contact');
+  const formatted = n.toLocaleString();
+  const ord = ordinal(n);
+
+  if (heroCount)   heroCount.textContent  = formatted;
+  if (heroOrdinal) heroOrdinal.textContent = ord;
+  if (ctaCount)    ctaCount.textContent   = formatted;
+  if (ctaOrdinal)  ctaOrdinal.textContent = ord;
+}
+
+async function bumpViews() {
+  const heroCount   = document.getElementById('view-count');
+  const ctaCount    = document.getElementById('view-count-contact');
   const chip        = heroCount?.closest('.views-card');
 
   try {
+    const savedCount = Number(localStorage.getItem(VIEW_COUNT_KEY));
+    const alreadyCounted = localStorage.getItem(VIEW_COUNTED_KEY) === '1';
+    if (alreadyCounted && Number.isFinite(savedCount) && savedCount > 0) {
+      renderViewCount(savedCount);
+      return;
+    }
+
+    localStorage.setItem(VIEW_COUNTED_KEY, '1');
     const res = await fetch('https://abacus.jasoncameron.dev/hit/nikk-portfolio-v3/home');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     const n = data.value ?? data.count;
     if (typeof n !== 'number') throw new Error('bad payload');
 
-    const formatted = n.toLocaleString();
-    const ord = ordinal(n);
-
-    if (heroCount)   heroCount.textContent  = formatted;
-    if (heroOrdinal) heroOrdinal.textContent = ord;
-    if (ctaCount)    ctaCount.textContent   = formatted;
-    if (ctaOrdinal)  ctaOrdinal.textContent  = ord;
+    localStorage.setItem(VIEW_COUNT_KEY, String(n));
+    renderViewCount(n);
 
   } catch (err) {
+    localStorage.removeItem(VIEW_COUNTED_KEY);
     console.warn('View counter unavailable:', err);
     if (chip) chip.style.display = 'none';
     const ctaLine = ctaCount?.closest('.visitor-line');
@@ -333,14 +419,10 @@ async function bumpViews() {
   }
 }
 
-// Apply dynamic year label on page load
 applyAcademicYear();
 
-// Kick off async widgets after first paint.
 renderContribGraph();
 bumpViews();
-// ── LEARNING CARD WORD REVEAL re-trigger on scroll ────────────────────────────
-// Words animate in on first visibility. Intersection observer re-arms after 8s.
 (function initLearnReveal() {
   const card = document.querySelector('.card-learning');
   if (!card) return;
@@ -349,17 +431,15 @@ bumpViews();
   function rearm() {
     words.forEach(w => {
       w.style.animation = 'none';
-      w.offsetHeight; // reflow
+      w.offsetHeight;
       w.style.animation = '';
     });
   }
 
-  // Re-trigger every time the hero scrolls into view
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) rearm(); });
   }, { threshold: 0.8 });
   io.observe(card);
 })();
 
-// Apply dynamic year label on page load
 applyAcademicYear();
