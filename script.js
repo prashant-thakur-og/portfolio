@@ -441,9 +441,9 @@ async function bumpViews() {
   } catch (err) {
     localStorage.removeItem(VIEW_COUNTED_KEY);
     console.warn('View counter unavailable:', err);
-    if (chip) chip.style.display = 'none';
-    const ctaLine = ctaCount?.closest('.visitor-line');
-    if (ctaLine) ctaLine.style.display = 'none';
+    // Keep the card visible when the API is unavailable on a static host.
+    if (chip) chip.style.display = '';
+    renderViewCount(0);
   }
 }
 
