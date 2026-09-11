@@ -364,9 +364,19 @@ function graphFallback(graph) {
   graph.appendChild(img);
 }
 
-const VIEW_COUNT_KEY = 'nikk-portfolio-view-count-v2';
-const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted-v2';
-const VIEW_CONSENT_KEY = 'nikk-portfolio-view-consent-v2';
+const VIEW_COUNT_KEY = 'nikk-portfolio-view-count-v3';
+const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted-v3';
+const VIEW_CONSENT_KEY = 'nikk-portfolio-view-consent-v3';
+const VIEWER_KEY = 'nikk-portfolio-anonymous-viewer-v1';
+
+function getAnonymousViewerKey() {
+  let key = localStorage.getItem(VIEWER_KEY);
+  if (!key) {
+    key = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${crypto.getRandomValues(new Uint32Array(4)).join('-')}`;
+    localStorage.setItem(VIEWER_KEY, key);
+  }
+  return key;
+}
 
 function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
@@ -417,13 +427,17 @@ async function bumpViews() {
       return;
     }
 
-    localStorage.setItem(VIEW_COUNTED_KEY, '1');
-    const res = await fetch('https://abacus.jasoncameron.dev/hit/nikk-portfolio-v3/home');
+    const res = await fetch('/api/visitors', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ visitorKey: getAnonymousViewerKey() })
+    });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    const n = data.value ?? data.count;
-    if (typeof n !== 'number') throw new Error('bad payload');
+    const n = Number(data.count);
+    if (!Number.isInteger(n) || n < 0) throw new Error('bad payload');
 
+    localStorage.setItem(VIEW_COUNTED_KEY, '1');
     localStorage.setItem(VIEW_COUNT_KEY, String(n));
     renderViewCount(n);
 
