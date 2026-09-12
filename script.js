@@ -45,6 +45,63 @@ function applyAcademicYear() {
   });
 }
 
+function initQuoteRotator() {
+  const text = document.getElementById('quote-text');
+  if (!text) return;
+
+  const quoteSets = {
+    Technology: [
+      'The best technology removes friction and gives people more room to think.',
+      'Build tools that make difficult work feel possible.',
+      'Good systems are quiet: they solve the problem and stay out of the way.'
+    ],
+    Money: [
+      'Money follows useful skills, clear thinking, and consistent execution.',
+      'Build assets that keep creating value after the work is done.',
+      'The strongest investment is becoming difficult to replace.'
+    ],
+    Motivation: [
+      'Small progress is still proof that the direction is working.',
+      'Discipline makes ordinary effort compound into uncommon results.',
+      'Start before you feel ready; clarity usually arrives after motion.'
+    ],
+    Sigma: [
+      'Move quietly. Let the work become impossible to ignore.',
+      'Do not chase the crowd when you are building your own standard.',
+      'Focus is choosing your path before the noise chooses it for you.'
+    ]
+  };
+  const cacheKey = 'nikk-daily-quote-v2';
+  const today = new Date().toISOString().slice(0, 10);
+  let cached;
+
+  try {
+    cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+  } catch {
+    cached = null;
+  }
+
+  function render(quote) {
+    text.textContent = quote;
+  }
+
+  if (cached?.date === today && cached.category && cached.quote) {
+    render(cached.quote);
+    return;
+  }
+
+  const categories = Object.keys(quoteSets);
+  const previousCategory = cached?.category;
+  const availableCategories = categories.filter(category => category !== previousCategory);
+  const category = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+  const quotes = quoteSets[category];
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  const next = { date: today, category, quote };
+
+  localStorage.setItem(cacheKey, JSON.stringify(next));
+  render(quote);
+}
+
 const THEME_KEY = 'nikk-theme-v2';
 
 function applyTheme(theme) {
@@ -364,90 +421,10 @@ function graphFallback(graph) {
   graph.appendChild(img);
 }
 
-const VIEW_COUNT_KEY = 'nikk-portfolio-view-count-v3';
-const VIEW_COUNTED_KEY = 'nikk-portfolio-view-counted-v3';
-const VIEW_CONSENT_KEY = 'nikk-portfolio-view-consent-v3';
-const VIEWER_KEY = 'nikk-portfolio-anonymous-viewer-v1';
-
-function getAnonymousViewerKey() {
-  let key = localStorage.getItem(VIEWER_KEY);
-  if (!key) {
-    key = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${crypto.getRandomValues(new Uint32Array(4)).join('-')}`;
-    localStorage.setItem(VIEWER_KEY, key);
-  }
-  return key;
-}
-
-function ordinal(n) {
-  const s = ['th', 'st', 'nd', 'rd'];
-  const v = n % 100;
-  return s[(v - 20) % 10] || s[v] || s[0];
-}
-
-function renderViewCount(n) {
-  const heroCount   = document.getElementById('view-count');
-  const heroOrdinal = document.getElementById('view-ordinal');
-  const ctaCount    = document.getElementById('view-count-contact');
-  const ctaOrdinal  = document.getElementById('view-ordinal-contact');
-  const formatted = n.toLocaleString();
-  const ord = ordinal(n);
-
-  if (heroCount)   heroCount.textContent  = formatted;
-  if (heroOrdinal) heroOrdinal.textContent = ord;
-  if (ctaCount)    ctaCount.textContent   = formatted;
-  if (ctaOrdinal)  ctaOrdinal.textContent = ord;
-}
-
-async function bumpViews() {
-  const heroCount   = document.getElementById('view-count');
-  const ctaCount    = document.getElementById('view-count-contact');
-  const chip        = heroCount?.closest('.views-card');
-  const allowButton = document.getElementById('visitor-allow');
-  if (localStorage.getItem(VIEW_CONSENT_KEY) !== '1') {
-    if (allowButton) {
-      allowButton.hidden = false;
-      allowButton.addEventListener('click', () => {
-        localStorage.setItem(VIEW_CONSENT_KEY, '1');
-        allowButton.hidden = true;
-          bumpViews();
-      }, { once: true });
-    }
-    return;
-  }
-
-  if (allowButton) allowButton.hidden = true;
-  try {
-  const savedCount = Number(localStorage.getItem(VIEW_COUNT_KEY));
-  const hasSavedCount = Number.isInteger(savedCount) && savedCount >= 0;
-  if (hasSavedCount) renderViewCount(savedCount);
-
-  const res = await fetch('/api/visitors', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ visitorKey: getAnonymousViewerKey() })
-    });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    const n = Number(data.count);
-    if (!Number.isInteger(n) || n < 0) throw new Error('bad payload');
-
-    localStorage.setItem(VIEW_COUNTED_KEY, '1');
-    localStorage.setItem(VIEW_COUNT_KEY, String(n));
-    renderViewCount(n);
-
-  } catch (err) {
-  console.warn('View counter unavailable:', err);
-  // Keep the last confirmed count instead of replacing it with zero offline.
-  if (chip) chip.style.display = '';
-  if (hasSavedCount) renderViewCount(savedCount);
-  }
-
-}
-
 applyAcademicYear();
+initQuoteRotator();
 
 renderContribGraph();
-bumpViews();
 (function initLearnReveal() {
   const card = document.querySelector('.card-learning');
   if (!card) return;
@@ -466,5 +443,3 @@ bumpViews();
   }, { threshold: 0.8 });
   io.observe(card);
 })();
-
-applyAcademicYear();

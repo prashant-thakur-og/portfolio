@@ -356,6 +356,25 @@ main, footer, #prog { position: relative; z-index: 1; }
   box-shadow: 0 6px 20px var(--accent-glow);
 }
 
+[data-theme="light"] a.btn-primary[href^="mailto:"]:hover,
+[data-theme="light"] a.btn-project:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+  box-shadow: 0 7px 20px rgba(32,29,25,.22);
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] a.btn-primary[href^="mailto:"]:focus-visible,
+[data-theme="light"] a.btn-primary[href^="mailto:"]:active,
+[data-theme="light"] a.btn-project:focus-visible,
+[data-theme="light"] a.btn-project:active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
 .btn-ghost {
   background: transparent;
   color: var(--ink);
@@ -671,6 +690,7 @@ main, footer, #prog { position: relative; z-index: 1; }
   display: flex; flex-wrap: wrap;
   gap: 10px;
   max-width: 700px;
+  align-items: flex-start;
 }
 .status-card {
   display: flex; align-items: center; gap: 8px;
@@ -695,16 +715,75 @@ main, footer, #prog { position: relative; z-index: 1; }
 .status-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .status-card .award-ico { color: #eab308; flex-shrink: 0; }
 [data-theme="dark"] .status-card .award-ico { color: #fbbf24; }
+.status-card.card-award,
+.status-card.card-building,
+.status-card.card-learning {
+  background: var(--bg-card);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.status-card.card-award::before,
+.status-card.card-building::before,
+.status-card.card-learning::before {
+  display: none;
+}
+html[data-theme="light"] .status-card.quote-card {
+  position: relative;
+  overflow: hidden;
+  max-width: 270px;
+  white-space: normal;
+  border-color: #08080a;
+  background: #08080a;
+  color: #fff;
+  animation: quote-breathe 3.8s ease-in-out infinite;
+}
+.status-card.quote-card:hover { border-color: #08080a; }
+html[data-theme="dark"] .status-card.quote-card {
+  border-color: #fff;
+  background: #fff;
+  color: #08080a;
+}
+html[data-theme="dark"] .status-card.quote-card:hover { border-color: #fff; }
+.quote-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,.18) 50%, transparent 80%);
+  pointer-events: none;
+  animation: quote-sweep 4.6s ease-in-out infinite;
+}
+[data-theme="dark"] .quote-card::after {
+  background: linear-gradient(105deg, transparent 20%, rgba(0,0,0,.12) 50%, transparent 80%);
+}
+@keyframes quote-breathe {
+  0%, 100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  50% { box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+}
+@keyframes quote-sweep {
+  0%, 25% { left: -70%; }
+  65%, 100% { left: 125%; }
+}
+.quote-card .status-copy {
+  min-width: 0;
+}
+.quote-card .quote-mark {
+  color: currentColor;
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.quote-card #quote-text {
+  white-space: normal;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
 
 /* ── 1. AWARD CARD — gold shimmer sweep ──────────────────────────────────── */
 .card-award {
-  border-color: rgba(234,179,8,.35);
-  background: rgba(234,179,8,.06);
   position: relative; overflow: hidden;
-}
-[data-theme="dark"] .card-award {
-  border-color: rgba(251,191,36,.28);
-  background: rgba(251,191,36,.06);
 }
 .card-award .award-ico { color: #d97706; }
 [data-theme="dark"] .card-award .award-ico { color: #fbbf24; }
@@ -765,17 +844,6 @@ main, footer, #prog { position: relative; z-index: 1; }
   font-size: .65rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: .1em;
   color: var(--faint);
-}
-
-/* ── VIEWS CARD ────────────────────────────────────────────────────────── */
-.views-card { color: var(--muted); gap: 6px; }
-.views-card svg { color: var(--accent); flex-shrink: 0; }
-.views-card strong {
-  font-family: var(--font-mono);
-  font-weight: 600; font-size: .82rem;
-  color: var(--ink);
-  min-width: 18px;
-  display: inline-block;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -1627,6 +1695,7 @@ footer span {
   .r, .tli { opacity: 1; transform: none; transition: none; }
   .cursor { animation: none; }
   .status-dot { animation: none; }
+  .quote-card, .quote-card::after { animation: none; }
   .theme-wave-overlay.is-active { animation: none; }
 }
 
@@ -1637,6 +1706,7 @@ footer span {
   .sw, footer { padding-left: 24px; padding-right: 24px; }
   #site-header { padding: 10px 16px; }
   #nav { padding: 8px 16px; }
+  .hero-sec { min-height: auto; align-items: flex-start; }
 
   .n-links, .n-right > .btn-sm { display: none; }
   .burger { display: flex; }
@@ -1686,8 +1756,6 @@ footer span {
   .hero-actions .btn, .id-actions .btn { width: 100%; }
   .status-cards { grid-template-columns: 1fr; width: 100%; }
   .status-card { width: 100%; min-width: 0; white-space: normal; }
-  .views-card { align-items: flex-start; }
-  .views-card .visitor-allow { margin-left: auto; flex-shrink: 0; }
   .status-copy { min-width: 0; }
   .status-copy > span:last-child { overflow-wrap: anywhere; }
   .steps { grid-template-columns: 1fr; }
@@ -1701,48 +1769,6 @@ footer span {
   .cta-link-btn { justify-content: center; }
   .form-footer { flex-direction: column; align-items: flex-start; }
 }
-
-/* ══════════════════════════════════════════════════════════════════════════
-   VISITOR COUNTER
-   ══════════════════════════════════════════════════════════════════════════ */
-.visitor-line {
-  font-family: var(--font-mono);
-  font-size: .78rem;
-  color: rgba(244, 242, 236, 0.4);
-  margin-top: 28px;
-  letter-spacing: .02em;
-}
-.visitor-line strong {
-  color: rgba(244, 242, 236, 0.75);
-  font-weight: 600;
-}
-.privacy-note {
-  font-size: .72rem;
-  color: rgba(244, 242, 236, .42);
-  margin-top: 10px;
-}
-
-/* Hero views-card updated style */
-.views-card > span { font-size: .8rem; }
-  .views-card strong {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: .82rem;
-  color: var(--ink);
-  }
-  .visitor-allow {
-  margin-left: auto;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  padding: 6px 10px;
-  font: 600 .7rem var(--font-mono);
-  cursor: pointer;
-  }
-  .visitor-allow:hover { background: var(--accent); color: var(--bg); }
-  .visitor-allow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .visitor-allow[hidden] { display: none; }
 
 /* --------------------------------------------------------------------------
    DEVICON TAG ICONS
