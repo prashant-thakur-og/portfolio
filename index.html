@@ -20,8 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <script defer src="/_vercel/insights/script.js"></script>
 
@@ -32,8 +32,9 @@
 
 <script>
 (function(){
-  const saved = localStorage.getItem('nikk-theme-v2');
-  const theme = saved || 'light';
+  const stored = localStorage.getItem('nikk-theme-v2');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = stored || (prefersDark ? 'dark' : 'light');
   document.documentElement.setAttribute('data-theme', theme);
 })();
 </script>
@@ -42,7 +43,6 @@
 
 <div id="prog" aria-hidden="true"></div>
 
-<!-- ════════════════════════════════ MOBILE MENU ═══════════════════════════════ -->
 <div id="mob" aria-hidden="true" role="dialog" aria-label="Navigation menu">
   <nav class="mob-nav">
     <a href="#hero"       class="mm"><span>01</span>Home</a>
@@ -62,7 +62,6 @@
 </div>
 
 
-<!-- ════════════════════════════════ NAV ═══════════════════════════════════════ -->
 <header id="site-header">
   <nav id="nav" aria-label="Primary navigation">
     <a href="#hero" class="n-logo" id="nav-logo">
@@ -89,16 +88,14 @@
       
 
       <button class="burger" id="bg" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mob">
-        <span></span><span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 </header>
 
-<!-- ════════════════════════════════ MAIN ══════════════════════════════════════ -->
 <main id="main">
 
-  <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
   <section id="hero" class="sec hero-sec">
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="bg-grid" aria-hidden="true"></div>
@@ -185,7 +182,6 @@
   </section>
 
 
-  <!-- ── ABOUT ───────────────────────────────────────────────────────────── -->
   <section id="about" class="sec sec-alt">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">01</span><h2 class="sec-h2">About</h2><span class="sec-line" aria-hidden="true"></span></div>
@@ -230,7 +226,6 @@
     </div>
   </section>
 
-  <!-- ── SKILLS ──────────────────────────────────────────────────────────── -->
   <section id="skills" class="sec">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">02</span><h2 class="sec-h2">Skills</h2><span class="sec-line" aria-hidden="true"></span></div>
@@ -266,7 +261,6 @@
   </section>
 
 
-  <!-- ── TOOLS ────────────────────────────────────────────────────── -->
   <section id="tools" class="sec sec-alt">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">03</span><h2 class="sec-h2">Tools</h2><span class="sec-line" aria-hidden="true"></span></div>
@@ -335,7 +329,6 @@
     </div>
   </section>
 
-  <!-- ── PROJECTS ────────────────────────────────────────────────────────── -->
   <section id="projects" class="sec">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">04</span><h2 class="sec-h2">Projects</h2><span class="sec-line" aria-hidden="true"></span></div>
@@ -410,7 +403,6 @@
   </div>
 
 
-  <!-- ── OPEN SOURCE ─────────────────────────────────────────────────────── -->
   <section id="opensource" class="sec">
     <div class="sw">
       <div class="sec-label r"><span class="sec-num">05</span><h2 class="sec-h2">Open Source</h2><span class="sec-line" aria-hidden="true"></span></div>
@@ -467,57 +459,82 @@
   </section>
 
 
-  <!-- ── CONTACT ─────────────────────────────────────────────────────────── -->
   <section id="contact" class="sec sec-contact">
     <div class="contact-glow" aria-hidden="true"></div>
     <div class="sw contact-inner">
       <div class="sec-label r"><span class="sec-num light">06</span><h2 class="sec-h2 contact-h2">Contact</h2><span class="sec-line light" aria-hidden="true"></span></div>
-      <h2 class="cta-h2 r" style="transition-delay:.04s">Want to work together?<br>Just send a message.</h2>
-      <p class="cta-sub r" style="transition-delay:.08s">Open to internships and hackathons. Always up for a good collaboration.</p>
 
-      <form id="contact-form" class="contact-form r" style="transition-delay:.12s">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="from_name">Name</label>
-            <input type="text" id="from_name" name="from_name" placeholder="Your name" autocomplete="name" required>
-          </div>
-          <div class="form-group">
-            <label for="reply_to">Email</label>
-            <input type="email" id="reply_to" name="reply_to" placeholder="your@email.com" autocomplete="email" maxlength="254" required>
-          </div>
+      <div class="contact-copy r" style="transition-delay:.04s">
+        <h2 class="cta-h2">Want to build something useful? Just a message away</h2>
+        <p class="cta-sub">Open to internships, product work, and collaborations where I can help ship real systems with clear impact.</p>
+        <div class="contact-meta">
+          <span class="contact-pill">Available for internships</span>
+          <span class="contact-pill">India</span>
         </div>
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" placeholder="Internship opportunity / Collaboration / Hello" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell me about the opportunity, project, or what you'd like to discuss..." required></textarea>
-        </div>
-        <div class="form-footer">
-          <button type="submit" class="btn btn-send" id="submit-btn">
-            <span id="btn-text">Send message</span>
-            <svg id="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-          </button>
-          <p class="form-note">Or email directly: <a href="mailto:nikhilgumasta1@gmail.com">nikhilgumasta1@gmail.com</a></p>
-        </div>
-      </form>
+      </div>
 
-      <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+      <div class="contact-panel r" style="transition-delay:.12s">
+        <div class="contact-panel-top">
+          <p class="contact-kicker">Reach out</p>
+          <a href="mailto:nikhilgumasta1@gmail.com" class="contact-mail">nikhilgumasta1@gmail.com</a>
+        </div>
 
-      <div class="cta-links r" style="transition-delay:.18s">
-        <a href="mailto:nikhilgumasta1@gmail.com" class="cta-link-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>
-          Email
-        </a>
-        <a href="https://github.com/CyberAkhil" class="cta-link-btn" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
-          GitHub
-        </a>
-        <a href="https://linkedin.com/in/nikhil-gumasta" class="cta-link-btn" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
-        </a>
+        <div class="contact-list" aria-label="Contact links">
+          <a href="mailto:nikhilgumasta1@gmail.com" class="contact-item is-mail" aria-label="Email Nikhil">
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75Zm2.25-.75a.75.75 0 0 0-.75.75v.37l7.5 5.61 7.5-5.61v-.37a.75.75 0 0 0-.75-.75H5.75Zm13.5 3.36-6.58 4.92a1.25 1.25 0 0 1-1.34 0L4.75 9.36v7.89c0 .41.34.75.75.75h12.5c.41 0 .75-.34.75-.75V9.36Z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-item-copy">
+              <strong>Email</strong>
+              <span>nikhilgumasta1@gmail.com</span>
+            </span>
+          </a>
+
+          <a href="https://github.com/CyberAkhil" class="contact-item is-github" target="_blank" rel="noopener" aria-label="GitHub profile">
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.8 12 .8Z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-item-copy">
+              <strong>GitHub</strong>
+              <span>CyberAkhil</span>
+            </span>
+          </a>
+
+          <a href="https://linkedin.com/in/nikhil-gumasta" class="contact-item is-linkedin" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5A1.56 1.56 0 1 1 6.94 5.4a1.56 1.56 0 0 1 0 3.1ZM5.5 9.72h2.9v9.78H5.5V9.72Zm4.83 0h2.78v1.33h.04c.39-.73 1.34-1.5 2.75-1.5 2.94 0 3.48 1.93 3.48 4.43v5.52h-2.9v-5.17c0-1.23-.02-2.82-1.72-2.82-1.72 0-1.99 1.34-1.99 2.73v5.26h-2.9V9.72Z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-item-copy">
+              <strong>LinkedIn</strong>
+              <span>nikhil-gumasta</span>
+            </span>
+          </a>
+
+          <a href="https://x.com/nikkhil_g18" class="contact-item is-x" target="_blank" rel="noopener" aria-label="X profile">
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H21l-6.77 7.74L22.3 22h-6.1l-4.76-6.93L6.2 22H3.1l7.25-8.29L1.7 2h6.25l4.3 6.39L18.9 2Zm-1.1 18.1h1.69L7.42 3.8H5.62l12.18 16.3Z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-item-copy">
+              <strong>X</strong>
+              <span>@nikkhil_g18</span>
+            </span>
+          </a>
+
+          <a href="https://www.buymeacoffee.com/nikkhil_g18" class="contact-item is-coffee" target="_blank" rel="noopener" aria-label="Buy me a coffee">
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 512 512" aria-hidden="true">
+                <path d="M267.821 145.08c-18.397 7.873-39.275 16.8-66.334 16.8A125.636 125.636 0 0 1 168 157.265l18.714 192.072a32.091 32.091 0 0 0 31.999 29.451s26.535 1.377 35.389 1.377c9.529 0 38.104-1.377 38.104-1.377a32.105 32.105 0 0 0 31.992-29.451l20.044-212.247c-8.958-3.058-17.998-5.09-28.189-5.09-17.625-.007-31.826 6.062-48.232 13.08Z" fill="#F9D94C"/>
+                <path d="M431.225 136.847l-2.818-14.21c-2.529-12.75-8.269-24.797-21.36-29.405-4.197-1.474-8.958-2.108-12.176-5.16-3.217-3.05-4.168-7.79-4.912-12.184-1.379-8.066-2.674-16.139-4.087-24.19-1.219-6.923-2.184-14.7-5.36-21.05-4.134-8.527-12.713-13.514-21.243-16.814a122.376 122.376 0 0 0-13.361-4.132c-21.312-5.62-43.719-7.687-65.644-8.865a551.323 551.323 0 0 0-78.957 1.309c-19.541 1.777-40.123 3.926-58.692 10.683-6.787 2.473-13.781 5.441-18.941 10.683-6.333 6.44-8.4 16.4-3.777 24.431 3.287 5.704 8.855 9.733 14.76 12.399a119.721 119.721 0 0 0 23.965 7.797c22.944 5.07 46.709 7.06 70.15 7.908a534.377 534.377 0 0 0 77.861-2.542 443.547 443.547 0 0 0 19.149-2.528c7.503-1.15 12.32-10.959 10.108-17.792-2.646-8.169-9.757-11.337-17.798-10.104-1.185.186-2.363.358-3.549.53l-.854.124c-2.724.345-5.448.666-8.172.964a433.757 433.757 0 0 1-16.923 1.488c-12.664.882-25.363 1.288-38.055 1.309-12.472 0-24.95-.352-37.394-1.171a475.738 475.738 0 0 1-16.992-1.42c-2.57-.268-5.133-.55-7.696-.867l-2.44-.31-.53-.075-2.529-.366c-5.168-.778-10.335-1.673-15.448-2.755a2.322 2.322 0 0 1 0-4.532h.097a250.82 250.82 0 0 1 13.373-2.452c1.494-.235 2.991-.464 4.493-.689h.041c2.805-.186 5.623-.689 8.413-1.02a535.287 535.287 0 0 1 73.101-2.576c11.844.345 23.682 1.04 35.471 2.239a391.9 391.9 0 0 1 7.579.847c.965.117 1.936.255 2.908.372l1.957.283c5.705.85 11.38 1.88 17.026 3.092 8.365 1.819 19.107 2.411 22.828 11.572 1.185 2.907 1.723 6.137 2.377 9.188l.834 3.892c.022.07.038.142.048.214 1.971 9.184 3.944 18.368 5.919 27.551a5.048 5.048 0 0 1-4.245 6.055h-.055l-1.206.166-1.191.158c-3.777.491-7.557.95-11.342 1.378a732.517 732.517 0 0 1-22.4 2.204 784.148 784.148 0 0 1-44.671 2.431 802.63 802.63 0 0 1-22.8.282 791.297 791.297 0 0 1-90.498-5.262 944.156 944.156 0 0 1-9.757-1.219c2.522.324-1.833-.248-2.715-.372-2.067-.29-4.134-.59-6.201-.902-6.939-1.04-13.836-2.322-20.761-3.445-8.371-1.377-16.378-.688-23.951 3.445a34.831 34.831 0 0 0-14.421 14.947c-3.266 6.75-4.238 14.099-5.698 21.352-1.461 7.253-3.735 15.057-2.874 22.503 1.854 16.07 13.092 29.129 29.257 32.05 15.207 2.755 30.497 4.987 45.827 6.888a847.199 847.199 0 0 0 196.217 1.129 10.338 10.338 0 0 1 11.411 11.324l-1.53 14.864-9.247 90.102a70942.686 70942.686 0 0 1-9.708 94.604l-2.756 26.637c-.882 8.743-1.006 17.758-2.667 26.396-2.618 13.583-11.817 21.926-25.239 24.976a175.929 175.929 0 0 1-37.47 4.379c-13.981.076-27.954-.544-41.935-.468-14.925.084-33.204-1.293-44.725-12.398-10.122-9.751-11.521-25.023-12.899-38.23a29492.896 29492.896 0 0 1-5.464-52.436l-10.129-97.182-6.552-62.88c-.111-1.04-.221-2.067-.324-3.114-.786-7.501-6.098-14.843-14.47-14.464-7.166.316-15.31 6.405-14.47 14.464l4.858 46.618 10.046 96.431c2.862 27.391 5.717 54.786 8.565 82.187.551 5.248 1.068 10.512 1.646 15.76 3.149 28.683 25.061 44.139 52.195 48.49 15.848 2.55 32.081 3.075 48.164 3.335 20.616.332 41.438 1.125 61.716-2.61 30.05-5.513 52.595-25.568 55.812-56.681l2.757-26.953c3.054-29.719 6.105-59.441 9.15-89.165l9.964-97.12 4.568-44.51a10.336 10.336 0 0 1 8.323-9.085c8.593-1.674 16.806-4.533 22.918-11.069 9.729-10.408 11.665-23.977 8.227-37.656zm-323.22 9.601c.131-.062-.11 1.061-.214 1.584-.02-.792.021-1.494.214-1.584zm.834 6.447c.068-.048.275.228.489.558-.324-.303-.531-.53-.496-.558h.007zm.82 1.082c.454.82.296.502 0 0zm1.646 1.336h.042c0 .048.075.096.103.145a1.043 1.043 0 0 0-.152-.145h.007zm288.376-1.998c-3.087 2.935-7.738 4.299-12.334 4.981-51.54 7.645-103.831 11.516-155.936 9.808-37.291-1.274-74.188-5.414-111.107-10.628-3.617-.51-7.538-1.171-10.025-3.837-4.686-5.028-2.384-15.153-1.165-21.228 1.116-5.566 3.252-12.984 9.874-13.776 10.336-1.212 22.338 3.147 32.564 4.697a616.948 616.948 0 0 0 37.07 4.512c52.932 4.822 106.752 4.071 159.45-2.982a666.195 666.195 0 0 0 28.712-4.498c8.496-1.523 17.915-4.381 23.049 4.415 3.52 5.992 3.989 14.01 3.445 20.781a11.585 11.585 0 0 1-3.604 7.755h.007Z" fill="#0D0C22"/>
+              </svg>
+            </span>
+            <span class="contact-item-copy">
+              <strong>Coffee</strong>
+              <span>nikkhil_g18</span>
+            </span>
+          </a>
+        </div>
+
+
       </div>
 
     </div>
@@ -525,7 +542,7 @@
 
 </main>
 
-<!-- ════════════════════════════════ FOOTER ════════════════════════════════════ -->
+
 <footer>
   <span>&copy; 2026 - Nikhil Gumasta</span>
   <span>Built to get Hired.</span>

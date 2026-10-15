@@ -1,24 +1,8 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   NIKK PORTFOLIO V3 — script.js
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-const EMAILJS_PUBLIC_KEY = 'Z2iOJ714x2lALCzbb';
-const EMAILJS_SERVICE_ID = 'service_c0letke';
-const EMAILJS_TEMPLATE_ID = 'template_p0m3bzc';
-
-if (typeof emailjs !== 'undefined') {
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-}
-
 const nav = document.getElementById('nav');
 const prog = document.getElementById('prog');
 const burger = document.getElementById('bg');
 const mob = document.getElementById('mob');
 const themeToggle = document.getElementById('theme-toggle');
-const contactForm = document.getElementById('contact-form');
-const submitBtn = document.getElementById('submit-btn');
-const btnText = document.getElementById('btn-text');
-const toast = document.getElementById('toast');
 
 
 function getAcademicYear() {
@@ -104,11 +88,28 @@ function initQuoteRotator() {
 
 const THEME_KEY = 'nikk-theme-v2';
 
-function applyTheme(theme) {
+function getSystemTheme() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function getInitialTheme() {
+  return localStorage.getItem(THEME_KEY) || getSystemTheme();
+}
+
+function applyTheme(theme, persist = true) {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem(THEME_KEY, theme);
+  if (persist) {
+    localStorage.setItem(THEME_KEY, theme);
+  }
   themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
 }
+
+const systemThemeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+systemThemeMedia.addEventListener?.('change', event => {
+  if (!localStorage.getItem(THEME_KEY)) {
+    applyTheme(event.matches ? 'dark' : 'light', false);
+  }
+});
 
 let themeWaveTimer;
 let themeApplyTimer;
@@ -116,6 +117,7 @@ let themeApplyTimer;
 function toggleTheme({ x, y, duration = 1350, animation = 'cubic-bezier(.16, 1, .3, 1)' } = {}) {
   const current = document.documentElement.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
+  localStorage.setItem(THEME_KEY, next);
   const root = document.documentElement;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -288,78 +290,6 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.r, .tli').forEach(el => obs.observe(el));
-
-function showToast(type, msg) {
-  toast.textContent = msg;
-  toast.className = 'toast ' + type;
-  setTimeout(() => { toast.className = 'toast'; }, 6000);
-}
-
-function setLoading(loading) {
-  submitBtn.disabled = loading;
-  btnText.textContent = loading ? 'Sending…' : 'Send message';
-}
-
-function isValidEmail(value) {
-  if (value.length > 254 || /\.\.|^\.|\.$/.test(value)) return false;
-  const match = value.match(/^[^\s@]+@([^\s@]+)$/);
-  if (!match) return false;
-
-  const domain = match[1];
-  return domain.split('.').every(label => /^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(label))
-    && domain.includes('.')
-    && domain.split('.').at(-1).length >= 2;
-}
-
-function validateForm(form) {
-  let valid = true;
-  form.querySelectorAll('[required]').forEach(el => {
-    el.classList.remove('error');
-    const val = el.value.trim();
-    if (!val) {
-      el.classList.add('error');
-      valid = false;
-    } else if (el.type === 'email' && !isValidEmail(val)) {
-      el.classList.add('error');
-      valid = false;
-    }
-  });
-  return valid;
-}
-
-if (contactForm) {
-  contactForm.querySelectorAll('input, textarea').forEach(el => {
-    el.addEventListener('input', () => el.classList.remove('error'));
-  });
-
-  contactForm.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    if (!validateForm(contactForm)) {
-      showToast('error', '⚠ Please fill in all required fields correctly.');
-      return;
-    }
-
-    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || !EMAILJS_PUBLIC_KEY) {
-      showToast('error', '⚙ EmailJS not configured yet. See script.js for setup instructions.');
-      return;
-    }
-
-    setLoading(true);
-    toast.className = 'toast';
-
-    try {
-      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm);
-      showToast('success', '✓ Message sent! I\'ll get back to you soon.');
-      contactForm.reset();
-    } catch (err) {
-      console.error('EmailJS error:', err);
-      showToast('error', '✕ Something went wrong. Please email me directly.');
-    } finally {
-      setLoading(false);
-    }
-  });
-}
 
 const GH_USER = 'CyberAkhil';
 
